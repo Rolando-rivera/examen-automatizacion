@@ -1,0 +1,18 @@
+[AMBIENTE DE PRUEBA] http://127.0.0.1:18080
+[DEPLOY] Levantando la versión de referencia
+[SALUD] HTTP 200 | versión activa = base-local
+[DEPLOY] Activando candidata-local
+[SALUD] HTTP 200 | versión activa = candidata-local
+[DEPLOY] Versión candidata-local verificada
+[ACEPTACIÓN] Impacto crítico: HTTP 200 | prioridad alta
+[ACEPTACIÓN] Impacto inválido: HTTP 400 | mensaje esperado
+[DEMOSTRACIÓN] Intentando desplegar una copia de prueba dañada
+[DEPLOY] Activando fallida-local
+[SALUD] La versión fallida-local no respondió correctamente.
+Error: Invalid or corrupt jarfile /tmp/tmp.9pZEOjTQyi/fallida.jar
+[ROLLBACK] Falló fallida-local. Restaurando candidata-local
+[SALUD] HTTP 200 | versión activa = candidata-local
+[ACEPTACIÓN] Impacto crítico: HTTP 200 | prioridad alta
+[ACEPTACIÓN] Impacto inválido: HTTP 400 | mensaje esperado
+[ROLLBACK] Versión candidata-local restaurada y verificada
+[RESULTADO] Despliegue y rollback verificados en el ambiente de prueba

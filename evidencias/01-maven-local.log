@@ -1,0 +1,62 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< cl.qa:prioridad-tickets >-----------------------
+[INFO] Building prioridad-tickets 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ prioridad-tickets ---
+[INFO] Deleting target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ prioridad-tickets ---
+[INFO] skip non existing resourceDirectory src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ prioridad-tickets ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 2 source files with javac [debug release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ prioridad-tickets ---
+[INFO] skip non existing resourceDirectory src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ prioridad-tickets ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ prioridad-tickets ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running cl.qa.tickets.PrioridadTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.060 s -- in cl.qa.tickets.PrioridadTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ prioridad-tickets ---
+[INFO] Building jar: target/prioridad-tickets.jar
+[INFO] 
+[INFO] --- failsafe:3.5.2:integration-test (default) @ prioridad-tickets ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running cl.qa.tickets.ApiTicketsIT
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.176 s -- in cl.qa.tickets.ApiTicketsIT
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- failsafe:3.5.2:verify (default) @ prioridad-tickets ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  19.532 s
+[INFO] Finished at: 2026-11-16T13:09:26-03:00
+[INFO] ------------------------------------------------------------------------

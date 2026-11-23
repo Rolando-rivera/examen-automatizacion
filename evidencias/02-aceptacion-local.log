@@ -1,0 +1,4 @@
+[ACEPTACIÓN] Validando el JAR antes del despliegue
+[SALUD] HTTP 200 | versión activa = candidata-local
+[ACEPTACIÓN] Impacto crítico: HTTP 200 | prioridad alta
+[ACEPTACIÓN] Impacto inválido: HTTP 400 | mensaje esperado

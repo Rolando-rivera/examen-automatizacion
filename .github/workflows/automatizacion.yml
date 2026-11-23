@@ -1,0 +1,95 @@
+name: Automatización de pruebas y despliegue
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: Build y pruebas automatizadas
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Compilar, empaquetar y verificar
+        run: mvn -B --no-transfer-progress clean verify
+      - name: Guardar informes de pruebas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: informes-maven
+          path: |
+            target/surefire-reports/
+            target/failsafe-reports/
+      - name: Guardar el JAR verificado
+        uses: actions/upload-artifact@v4
+        with:
+          name: aplicacion
+          path: target/prioridad-tickets.jar
+          if-no-files-found: error
+
+  acceptance:
+    name: Pruebas de aceptación HTTP
+    needs: ci
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          name: aplicacion
+          path: distribucion
+      - name: Ejecutar aceptación sobre el JAR
+        shell: bash
+        run: |
+          mkdir -p registros
+          bash scripts/despliegue.sh acceptance distribucion/prioridad-tickets.jar "$GITHUB_RUN_ID" 2>&1 | tee registros/aceptacion.log
+      - name: Guardar evidencia de aceptación
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencia-aceptacion
+          path: registros/
+
+  deploy:
+    name: Despliegue de prueba y rollback
+    if: github.ref == 'refs/heads/main'
+    needs: acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          name: aplicacion
+          path: distribucion
+      - name: Desplegar y demostrar recuperación
+        shell: bash
+        run: |
+          mkdir -p registros
+          bash scripts/despliegue.sh deploy distribucion/prioridad-tickets.jar "$GITHUB_RUN_ID" 2>&1 | tee registros/despliegue.log
+      - name: Guardar evidencia de despliegue
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencia-despliegue
+          path: registros/

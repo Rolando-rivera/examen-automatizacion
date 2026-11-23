@@ -79,7 +79,6 @@ El ambiente de prueba es temporal y usa el runner de GitHub Actions con acceso p
 
 4. Abre **Actions** y selecciona la ejecución del merge en `main`. Guarda su enlace, toma las capturas indicadas en Evidencias y adjúntalas al Word. Si guardas las imágenes también en el repositorio, actualiza sus enlaces en este README a través de otro Pull Request.
 
-## Referencias
+## Autor
 
-- [GitHub Docs — Crear y probar Java con Maven](https://docs.github.com/es/actions/tutorials/build-and-test-code/java-with-maven)
-- [Apache Maven — Uso de Failsafe](https://maven.apache.org/surefire/maven-failsafe-plugin/usage.html)
+Rolando Rivera
